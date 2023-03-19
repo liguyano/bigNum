@@ -17,17 +17,19 @@ class Chain
 private:
     node<T>* head;
     node<T>* rear;
+    unsigned int size;
 
 
 public:
-    Chain()
-    {
-        head=new node<T>;
-        rear=new node<T>;
-        rear->next=head;
-        head->next=NULL;
+    Chain() {
+        head = new node<T>;
+        rear = new node<T>;
+        rear->next = head;
+        head->next = NULL;
+        size = 0;
         //   rear= head;
     }
+    Chain<T>* copy();
     void add(T value);
     void addHead(T value);
     void remove();
@@ -37,6 +39,23 @@ public:
 
     node<T> *getRear() const;
 
+    unsigned int getSize() const {
+        return size;
+    }
+
 };
+
+template<typename T>
+Chain<T>* Chain<T>::copy() {
+    auto nChain=  new Chain<T>;
+    auto s=this->size;
+    auto no=this->getHead();
+    for (; s >0 ; s--) {
+        nChain->add(no->value);
+        no=no->next;
+    }
+    return nChain;
+}
+
 
 #endif //BIGNUM_CHAIN_H

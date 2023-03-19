@@ -1,11 +1,13 @@
 //
 // Created by kurum on 西暦2023年3月19日.
 //
-
+#ifndef BIGNUM_CHAIN_TPP
+#define BIGNUM_CHAIN_TPP
 #include "Chain.h"
 
 template<typename T>
 void Chain<T>::add(T value) {
+    size++;
     if (head->next==NULL)
     {
         if (rear->next==NULL)
@@ -32,6 +34,11 @@ void Chain<T>::add(T value) {
 
 template<typename T>
 void Chain<T>::remove() {
+    if (!size)
+    {
+        return;
+    }
+    size--;
     node<T> *tem=head;
     if (tem->next==NULL && rear->next==NULL)
     {
@@ -66,6 +73,7 @@ node<T> *Chain<T>::getRear() const {
 
 template<typename T>
 void Chain<T>::addHead(T va) {
+    size++;
     if (head->next==NULL )
     {
         if (rear->next==head)
@@ -93,6 +101,11 @@ void Chain<T>::addHead(T va) {
 
 template<typename T>
 void Chain<T>::remove(int index) {
+    if (index+1>size)
+    {
+        return;
+    }
+    size--;
     if (head->next==NULL && rear->next==NULL)
     {
         this->remove();
@@ -114,3 +127,5 @@ void Chain<T>::remove(int index) {
     }
 }
 
+
+#endif //BIGNUM_CHAIN_H
