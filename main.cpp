@@ -1,6 +1,8 @@
 #include <iostream>
-
+#include <self_made.h>
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 12;
+    pr "hello world" END;
+    lnprint("another");
+
+    return 0;
 }
